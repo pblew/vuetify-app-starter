@@ -1,0 +1,55 @@
+{
+  "name": "vue-starter",
+  "version": "1.0.0-SNAPSHOT",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "husky",
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "test:unit": "vitest --coverage",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build --force",
+    "lint": "prettier --check \"src/**/*.{ts,vue}\" && eslint --ext .ts,.vue --no-fix --max-warnings 0 src",
+    "lint:fix": "eslint --ext .ts,.vue --fix src",
+    "format": "prettier --write \"src/**/*.{ts,vue}\""
+  },
+  "engines": {
+    "node": ">=20.14.0",
+    "npm": ">=10.7.0"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "*",
+    "@mdi/font": "~7.4.0",
+    "tslib": "*",
+    "vue": "~3.4.0",
+    "vue-router": "~4.4.0",
+    "vuetify": "~3.6.0"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "~1.10.0",
+    "@tsconfig/node20": "~20.1.0",
+    "@types/node": "~20.14.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vitest/coverage-v8": "~2.0.0",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/test-utils": "~2.4.0",
+    "@vue/tsconfig": "^0.5.1",
+    "eslint": "~8.57.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "happy-dom": "~14.12.0",
+    "husky": "~9.1.0",
+    "lint-staged": "~15.2.0",
+    "npm-run-all2": "~6.2.0",
+    "prettier": "~3.3.0",
+    "sass": "~1.76.0",
+    "typescript": "~5.5.0",
+    "vite": "~5.3.0",
+    "vite-plugin-vuetify": "^2.0.0",
+    "vitest": "~2.0.0",
+    "vue-tsc": "^2.0.0"
+  }
+}
