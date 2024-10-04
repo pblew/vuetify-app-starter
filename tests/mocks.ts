@@ -1,6 +1,6 @@
-import { Router } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import services, { type Services } from "@/Services";
-import intercept, { FunctionInterceptor } from "./intercept";
+import intercept, { type FunctionInterceptor } from "./intercept";
 
 // for ANSI escape sequences, see: https://stackoverflow.com/a/33206814/3365601
 const warning: string = "\x1b[1;3;30;43mUn-mocked service call\x1b[0m";
@@ -16,7 +16,7 @@ export function mockServices(mocks: Partial<Services> = {}): Services {
     };
 }
 
-export const defaultMockRouter = {
-    beforeEach: (_guard) => () => undefined,
-    getRoutes: () => [],
-} as Router;
+export const defaultMockRouter = createRouter({
+    history: createWebHashHistory(),
+    routes: [],
+});

@@ -1,4 +1,4 @@
-import type { NavigationGuard, NavigationGuardNext, RouteLocationNormalized } from "vue-router";
+import type { NavigationGuard, RouteLocationNormalized } from "vue-router";
 import type { Store } from "@/Store";
 
 export interface RouteGuards {

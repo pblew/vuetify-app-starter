@@ -2,6 +2,10 @@ import type { RouteRecordNormalized, RouteRecordRaw } from "vue-router";
 import AppHome from "./home/AppHome.vue";
 import ReloadRoute from "./routing/ReloadRoute.vue";
 
+// use dynamic imports to enable route based code splitting
+const AlphaView = () => import("./alpha/AlphaView.vue");
+const BetaView = () => import("./beta/BetaView.vue");
+
 interface RouteMenuItem {
     index: number;
     icon: string;
@@ -37,7 +41,7 @@ export function byIndex(
     return Math.sign((index1 ?? 0) - (index2 ?? 0));
 }
 
-const routes: RouteRecordRaw[] = [
+const routes: Readonly<RouteRecordRaw[]> = [
     {
         path: "/",
         redirect: { name: "Home" },
@@ -56,6 +60,32 @@ const routes: RouteRecordRaw[] = [
                 index: 0,
                 icon: "mdi-home-outline",
                 title: "Home",
+            },
+        },
+    },
+    {
+        name: "Alpha",
+        path: "/alpha",
+        components: { main: AlphaView },
+        meta: {
+            menuItem: {
+                index: 1,
+                icon: "mdi-alpha-a-circle-outline",
+                title: "Alpha",
+                description: "Alpha",
+            },
+        },
+    },
+    {
+        name: "Beta",
+        path: "/beta",
+        components: { main: BetaView },
+        meta: {
+            menuItem: {
+                index: 2,
+                icon: "mdi-alpha-b-circle-outline",
+                title: "Beta",
+                description: "Beta",
             },
         },
     },
