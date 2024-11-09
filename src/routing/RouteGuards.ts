@@ -5,7 +5,7 @@ export interface RouteGuards {
     get(route: RouteLocationNormalized): NavigationGuard | undefined;
 }
 
-export default function useRouteGuards(store: Store): RouteGuards {
+export default function useRouteGuards(_store: Store): RouteGuards {
     //const { storeName } = store;
 
     const guards: ReadonlyMap<string, NavigationGuard> = new Map<string, NavigationGuard>([

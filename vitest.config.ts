@@ -19,7 +19,14 @@ export default mergeConfig(
             },
             coverage: {
                 cleanOnRerun: true,
-                exclude: ["*.cjs", "*.config.ts", "*.d.ts", "src/vueRouter.ts", "src/vuetify.ts", "tests/**"],
+                exclude: [
+                    "*.cjs",
+                    "*.config.ts",
+                    "*.d.ts",
+                    "src/vueRouter.ts",
+                    "src/vuetify.ts",
+                    "tests/**",
+                ],
                 reporter: ["lcovonly", "text"],
             },
             reporters: ["junit", "verbose"],

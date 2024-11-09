@@ -7,14 +7,16 @@
   "scripts": {
     "postinstall": "husky",
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-s checks \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest --coverage",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "lint": "prettier --check \"src/**/*.{ts,vue}\" && eslint --ext .ts,.vue --no-fix --max-warnings 0 src",
+    "lint": "eslint --ext .ts,.vue --no-fix --max-warnings 0 src",
     "lint:fix": "eslint --ext .ts,.vue --fix src",
-    "format": "prettier --write \"src/**/*.{ts,vue}\""
+    "format:check": "prettier --check \"**/*.{ts,vue}\"",
+    "format:fix": "prettier --write \"**/*.{ts,vue}\"",
+    "checks": "run-p format:check lint type-check"
   },
   "engines": {
     "node": ">=20.14.0",
