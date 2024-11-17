@@ -11,11 +11,22 @@ const isProduction = process.env.NODE_ENV === "production";
 export default defineConfig({
     base: "",
     plugins: [
-        vue({ template: { transformAssetUrls } }),
-        vuetify({ autoImport: true, styles: { configFile: "src/settings.scss" } }),
+        vue({
+            template: { transformAssetUrls },
+        }),
+        vuetify({
+            autoImport: true,
+        }),
     ],
     build: {
         target: "esnext",
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: "modern-compiler",
+            },
+        },
     },
     resolve: {
         alias: {

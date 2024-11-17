@@ -1,3 +1,3 @@
 module.exports = {
-    "*.{ts,vue}": ["prettier --check", "eslint --no-fix --max-warnings 0"],
+    "*.{ts,vue}": ["prettier --check", "eslint --max-warnings 0"],
 };

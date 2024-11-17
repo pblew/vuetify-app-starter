@@ -15,8 +15,8 @@
             <v-list>
                 <v-list-item
                     v-for="route in routes"
-                    color="primary"
                     :key="route.name"
+                    color="primary"
                     :prepend-icon="route.meta.menuItem?.icon"
                     :to="route"
                     :value="route.name"
@@ -30,9 +30,9 @@
             </template>
             <template #append>
                 <v-menu>
-                    <template #activator="{ props }">
+                    <template #activator="{ props: buttonProps }">
                         <v-btn
-                            v-bind="props"
+                            v-bind="buttonProps"
                             prepend-icon="mdi-account"
                             rounded="pill"
                             size="x-large"
@@ -96,7 +96,10 @@ function signOut() {}
 </script>
 
 <style lang="scss">
-@import "@fontsource/roboto/latin-400";
+@forward "@fontsource/roboto/latin-400";
+@forward "vuetify/settings" with (
+    $color-pack: false
+);
 
 body {
     font-family: "Roboto", sans-serif;
