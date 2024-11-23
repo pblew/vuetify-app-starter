@@ -96,7 +96,6 @@ function signOut() {}
 </script>
 
 <style lang="scss">
-@forward "@fontsource/roboto/latin-400";
 @forward "vuetify/settings" with (
     $color-pack: false
 );
