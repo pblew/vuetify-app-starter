@@ -2,8 +2,6 @@ import pluginVue from "eslint-plugin-vue";
 import vueTsEslintConfig from "@vue/eslint-config-typescript";
 import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
 
-// NB: eslint 9.15 is broken, so use 9.14 for now
-//     https://github.com/eslint/eslint/issues/19134
 export default [
     {
         files: ["**/*.ts", "**/*.vue"],
