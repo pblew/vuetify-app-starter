@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { byIndex, hasMenuItemWithDescription } from "@/routes";
-import { injectStore } from "@/Store";
+import { injectStore } from "@/Stores.ts";
 
 const { router } = injectStore();
 const { getRoutes } = router;

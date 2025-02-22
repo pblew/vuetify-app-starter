@@ -74,15 +74,15 @@ import { RouterView } from "vue-router";
 import logo from "./logo.png";
 import { byIndex, hasMenuItem } from "./routes";
 import type { Services } from "./Services";
-import { defineStore, StoreKey } from "./Store";
+import { defineStores, StoresKey } from "./Stores.ts";
 import useTheme from "./Theme";
 
 const props = defineProps<{
     services: Services;
 }>();
 
-const stores = defineStore(props.services);
-provide(StoreKey, stores);
+const stores = defineStores(props.services);
+provide(StoresKey, stores);
 
 const { router } = stores;
 const { getRoutes } = router;
@@ -96,10 +96,6 @@ function signOut() {}
 </script>
 
 <style lang="scss">
-@forward "vuetify/settings" with (
-    $color-pack: false
-);
-
 body {
     font-family: "Roboto", sans-serif;
 }

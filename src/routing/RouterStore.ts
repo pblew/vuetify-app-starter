@@ -2,7 +2,7 @@ import { unref } from "vue";
 import type { Router } from "vue-router";
 
 import type { Services } from "@/Services";
-import type { Store } from "@/Store";
+import type { Stores } from "@/Stores.ts";
 
 import useRouteGuards from "./RouteGuards";
 
@@ -10,7 +10,7 @@ export interface RouterStore extends Router {
     reloadRoute(delay: number): Promise<void>;
 }
 
-export default function useRouterStore(services: Services, store: Store): RouterStore {
+export default function useRouterStore(services: Services, store: Stores): RouterStore {
     const { vueRouter } = services;
     const guards = useRouteGuards(store);
 

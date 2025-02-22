@@ -4,7 +4,7 @@ import { VCard } from "vuetify/components";
 import { mount, type ComponentMountingOptions, VueWrapper } from "@vue/test-utils";
 
 import AppHome from "@/home/AppHome.vue";
-import { defineStore, StoreKey } from "@/Store";
+import { defineStores, StoresKey } from "@/Stores.ts";
 
 import { defaultMockRouter, mockServices } from "../mocks";
 import vuetify from "../vuetify";
@@ -81,7 +81,7 @@ describe("AppHome", () => {
                 global: {
                     plugins: [vuetify],
                     provide: {
-                        [StoreKey as symbol]: defineStore(mockServices({ vueRouter })),
+                        [StoresKey as symbol]: defineStores(mockServices({ vueRouter })),
                     },
                 },
                 shallow: true,

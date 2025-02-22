@@ -1,11 +1,11 @@
 import type { NavigationGuard, RouteLocationNormalized } from "vue-router";
-import type { Store } from "@/Store";
+import type { Stores } from "@/Stores.ts";
 
 export interface RouteGuards {
     get(route: RouteLocationNormalized): NavigationGuard | undefined;
 }
 
-export default function useRouteGuards(_store: Store): RouteGuards {
+export default function useRouteGuards(_store: Stores): RouteGuards {
     //const { storeName } = store;
 
     const guards: ReadonlyMap<string, NavigationGuard> = new Map<string, NavigationGuard>([
