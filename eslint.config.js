@@ -16,7 +16,6 @@ export default [
                     varsIgnorePattern: "^_",
                 },
             ],
-            "vue/script-setup-uses-vars": "error",
         },
     },
     {

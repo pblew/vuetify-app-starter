@@ -1,4 +1,5 @@
 <template>
+    <notification-snackbar :theme="theme" />
     <v-app :theme="theme">
         <v-navigation-drawer location="start" permanent>
             <template #prepend>
@@ -9,7 +10,7 @@
             </template>
             <template #append>
                 <v-footer>
-                    <small>&copy; 2024 <em>Your name here</em></small>
+                    <small>&copy; {{ year }} <em>Your name here</em></small>
                 </v-footer>
             </template>
             <v-list>
@@ -52,6 +53,7 @@
                             prepend-icon="mdi-account-settings-outline"
                             subtitle="Adjust preferences"
                             title="Settings"
+                            @click="showSettings"
                         />
                         <v-divider />
                         <v-list-item prepend-icon="mdi-logout" title="Sign Out" @click="signOut" />
@@ -72,6 +74,7 @@ import { computed, provide } from "vue";
 import { RouterView } from "vue-router";
 
 import logo from "./logo.png";
+import NotificationSnackbar from "./notifications/NotificationSnackbar.vue";
 import { byIndex, hasMenuItem } from "./routes";
 import type { Services } from "./Services";
 import { defineStores, StoresKey } from "./Stores.ts";
@@ -88,11 +91,17 @@ const { router } = stores;
 const { getRoutes } = router;
 
 const theme = useTheme();
+const year = new Date().getFullYear();
 const routes = getRoutes()
     .filter((route) => hasMenuItem(route))
     .sort(byIndex);
 const name = computed<string>(() => "User Name");
-function signOut() {}
+function showSettings() {
+    stores.notificationsStore.notifyWarning("Settings not available");
+}
+function signOut() {
+    stores.notificationsStore.notifyWarning("Sign out not available");
+}
 </script>
 
 <style lang="scss">
