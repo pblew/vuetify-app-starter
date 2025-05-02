@@ -1,4 +1,4 @@
-import { nextTick } from "vue";
+import { type ComponentInstance, nextTick } from "vue";
 import { type Router, type RouteRecord } from "vue-router";
 import { VCard } from "vuetify/components";
 import { mount, type ComponentMountingOptions, VueWrapper } from "@vue/test-utils";
@@ -10,7 +10,7 @@ import { defaultMockRouter, mockServices } from "../mocks";
 import vuetify from "../vuetify";
 
 describe("AppHome", () => {
-    type Instance = InstanceType<typeof AppHome>;
+    type Instance = ComponentInstance<typeof AppHome>;
     let mountFunction: (
         options?: ComponentMountingOptions<Instance>,
     ) => Promise<VueWrapper<Instance>>;
