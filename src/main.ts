@@ -5,7 +5,7 @@ import "vuetify/styles";
 import { createApp } from "vue";
 
 import App from "./App.vue";
-import services from "./Services";
+import services from "./services.ts";
 import vueRouter from "./vueRouter";
 import vuetify from "./vuetify";
 

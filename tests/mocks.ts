@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import services, { type Services } from "@/Services";
+import services, { type Services } from "@/services.ts";
 import intercept, { type FunctionInterceptor } from "./intercept";
 
 // for ANSI escape sequences, see: https://stackoverflow.com/a/33206814/3365601

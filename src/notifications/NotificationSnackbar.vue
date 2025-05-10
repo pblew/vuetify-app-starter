@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref, unref, watchEffect } from "vue";
-import { injectStore } from "@/Stores";
+import { injectStore } from "@/stores.ts";
 import { NotificationType } from "@/notifications/NotificationsStore";
 
 const colours: ReadonlyMap<NotificationType, string> = new Map([

@@ -1,6 +1,6 @@
 import { computed, type Ref, ref, unref } from "vue";
-import type { Services } from "@/Services";
-import type { Stores } from "@/Stores";
+import type { Services } from "@/services.ts";
+import type { Stores } from "@/stores.ts";
 
 export const enum NotificationType {
     INFO,

@@ -4,7 +4,7 @@ import { VCard } from "vuetify/components";
 import { mount, type ComponentMountingOptions, VueWrapper } from "@vue/test-utils";
 
 import AppHome from "@/home/AppHome.vue";
-import { defineStores, StoresKey } from "@/Stores.ts";
+import { defineStores, StoresKey } from "@/stores.ts";
 
 import { defaultMockRouter, mockServices } from "../mocks";
 import vuetify from "../vuetify";

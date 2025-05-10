@@ -1,5 +1,6 @@
 import { createVuetify } from "vuetify";
-import { dark, light, Theme } from "./Theme";
+import { dark, light } from "./themes.ts";
+import { Theme } from "./theme/ThemeStore.ts";
 
 const vuetify = createVuetify({
     defaults: {

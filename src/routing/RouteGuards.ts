@@ -1,5 +1,5 @@
 import type { NavigationGuard, RouteLocationNormalized } from "vue-router";
-import type { Stores } from "@/Stores.ts";
+import type { Stores } from "@/stores.ts";
 
 export interface RouteGuards {
     get(route: RouteLocationNormalized): NavigationGuard | undefined;

@@ -30,7 +30,7 @@
                 <v-app-bar-title class="text-h5"><em>Application Name</em></v-app-bar-title>
             </template>
             <template #append>
-                <v-menu>
+                <v-menu :close-on-content-click="false">
                     <template #activator="{ props: buttonProps }">
                         <v-btn
                             v-bind="buttonProps"
@@ -48,9 +48,14 @@
                             subtitle="Signed In"
                             :title="name"
                         />
+                        <v-list-item lines="two" prepend-icon="mdi-theme-light-dark" title="Theme">
+                            <template #subtitle>
+                                <theme-selector v-model="selectedTheme" />
+                            </template>
+                        </v-list-item>
                         <v-list-item
                             lines="two"
-                            prepend-icon="mdi-account-settings-outline"
+                            prepend-icon="mdi-account-cog-outline"
                             subtitle="Adjust preferences"
                             title="Settings"
                             @click="showSettings"
@@ -76,9 +81,9 @@ import { RouterView } from "vue-router";
 import logo from "./logo.png";
 import NotificationSnackbar from "./notifications/NotificationSnackbar.vue";
 import { byIndex, hasMenuItem } from "./routes";
-import type { Services } from "./Services";
-import { defineStores, StoresKey } from "./Stores.ts";
-import useTheme from "./Theme";
+import type { Services } from "./services.ts";
+import { defineStores, StoresKey } from "./stores.ts";
+import ThemeSelector from "./theme/ThemeSelector.vue";
 
 const props = defineProps<{
     services: Services;
@@ -87,10 +92,10 @@ const props = defineProps<{
 const stores = defineStores(props.services);
 provide(StoresKey, stores);
 
-const { router } = stores;
+const { themeStore, router } = stores;
 const { getRoutes } = router;
 
-const theme = useTheme();
+const { selectedTheme, theme } = themeStore;
 const year = new Date().getFullYear();
 const routes = getRoutes()
     .filter((route) => hasMenuItem(route))

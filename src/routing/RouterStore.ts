@@ -1,8 +1,8 @@
 import { unref } from "vue";
 import type { Router } from "vue-router";
 
-import type { Services } from "@/Services";
-import type { Stores } from "@/Stores.ts";
+import type { Services } from "@/services.ts";
+import type { Stores } from "@/stores.ts";
 
 import useRouteGuards from "./RouteGuards";
 
