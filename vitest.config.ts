@@ -14,15 +14,14 @@ export default mergeConfig(
             root: fileURLToPath(new URL("./", import.meta.url)),
             server: {
                 deps: {
-                    inline: ["vuetify"],
+                    inline: ["vuetify", "vue-router"],
                 },
             },
             coverage: {
                 cleanOnRerun: true,
                 exclude: [
-                    "*.cjs",
+                    "*.config.js",
                     "*.config.ts",
-                    "*.d.ts",
                     "src/vueRouter.ts",
                     "src/vuetify.ts",
                     "tests/**",

@@ -76,7 +76,7 @@ describe("AppHome", () => {
     };
 
     beforeEach(() => {
-        mountFunction = async (options) => {
+        mountFunction = async options => {
             const wrapper = mount(AppHome, {
                 global: {
                     plugins: [vuetify],

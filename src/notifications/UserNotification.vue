@@ -1,7 +1,7 @@
 <template>
     <v-snackbar
         v-model="show"
-        class="notification"
+        class="cursor-pointer"
         close-on-content-click
         location="top"
         multi-line
@@ -9,11 +9,11 @@
         width="500"
         :color="colour"
         :theme="theme"
-        :timer="`on-${colour}`"
+        :timer="timerColour"
     >
         <div class="d-flex flex-row">
             <v-icon size="48" class="flex-0-0 my-auto mr-4" :icon="icon" />
-            <div class="flex-1-1 my-auto notification-text">{{ currentNotification?.message }}</div>
+            <div class="flex-1-1 my-auto text-body-1">{{ currentNotification?.message }}</div>
         </div>
     </v-snackbar>
 </template>
@@ -51,22 +51,13 @@ watchEffect(() => {
         nextTick().then(() => dismissCurrentNotification());
     }
 });
-const colour = computed<string | undefined>((existingColour) => {
+const colour = computed<string | undefined>(existingColour => {
     const type = unref(currentNotification)?.type;
     return type !== undefined && colours.has(type) ? colours.get(type) : existingColour;
 });
-const icon = computed<string | undefined>((existingIcon) => {
+const icon = computed<string | undefined>(existingIcon => {
     const type = unref(currentNotification)?.type;
     return type !== undefined && icons.has(type) ? icons.get(type) : existingIcon;
 });
+const timerColour = computed<string | undefined>(() => `on-${unref(colour)}`);
 </script>
-
-<style scoped lang="scss">
-.notification {
-    cursor: pointer !important;
-}
-.notification-text {
-    font-size: larger;
-    font-weight: bold;
-}
-</style>

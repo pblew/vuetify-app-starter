@@ -34,7 +34,7 @@ export default function useNotificationsStore(
 
     function addNotification(notification: Omit<Notification, "onDismiss">): Promise<void> {
         let onDismiss = () => {};
-        const promise = new Promise<void>((resolve) => (onDismiss = resolve));
+        const promise = new Promise<void>(resolve => (onDismiss = resolve));
         notifications.value.push({ ...notification, onDismiss });
         return promise;
     }

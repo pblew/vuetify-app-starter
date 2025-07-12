@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from "node:url";
-import process from "process";
+import process from "node:process";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
@@ -23,13 +23,6 @@ export default defineConfig({
     },
     optimizeDeps: {
         exclude: ["vuetify", "vue-router"],
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: "modern-compiler",
-            },
-        },
     },
     resolve: {
         alias: {

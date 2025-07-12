@@ -2,7 +2,9 @@ import pluginVue from "eslint-plugin-vue";
 import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
 import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
 
-export default defineConfigWithVueTs(
+const config = defineConfigWithVueTs(
+    pluginVue.configs["flat/recommended"],
+    vueTsConfigs.recommended,
     {
         files: ["**/*.{ts,vue}"],
         rules: {
@@ -19,9 +21,8 @@ export default defineConfigWithVueTs(
         },
     },
     {
-        ignores: ["**/dist/**", "**/dist-ssr/**", "**/coverage/**"],
+        ignores: ["**/dist/**", "**/dist-ssr/**", "**/coverage/**", "**/logs/**"],
     },
-    pluginVue.configs["flat/recommended"],
-    vueTsConfigs.recommended,
     skipFormatting,
 );
+export default config;

@@ -29,7 +29,7 @@ export function hasMenuItem(
 }
 
 export function hasMenuItemWithDescription(route: RouteRecordNormalized): boolean {
-    return hasMenuItem(route, (menuItem) => (menuItem.description?.length ?? 0) > 0);
+    return hasMenuItem(route, menuItem => (menuItem.description?.length ?? 0) > 0);
 }
 
 export function byIndex(

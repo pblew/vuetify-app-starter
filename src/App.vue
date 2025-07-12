@@ -1,33 +1,12 @@
 <template>
-    <notification-snackbar :theme="theme" />
+    <user-notification :theme="theme" />
     <v-app :theme="theme">
-        <v-navigation-drawer location="start" permanent>
-            <template #prepend>
-                <div class="pa-7">
-                    <v-img :src="logo" alt="" />
-                </div>
-                <v-divider />
-            </template>
-            <template #append>
-                <v-footer>
-                    <small>&copy; {{ year }} <em>Your name here</em></small>
-                </v-footer>
-            </template>
-            <v-list>
-                <v-list-item
-                    v-for="route in routes"
-                    :key="route.name"
-                    color="primary"
-                    :prepend-icon="route.meta.menuItem?.icon"
-                    :to="route"
-                    :value="route.name"
-                    >{{ route.meta.menuItem?.title }}
-                </v-list-item>
-            </v-list>
-        </v-navigation-drawer>
         <v-app-bar color="primary">
             <template #title>
                 <v-app-bar-title class="text-h5"><em>Application Name</em></v-app-bar-title>
+            </template>
+            <template #image>
+                <v-img :src="logo" alt="" />
             </template>
             <template #append>
                 <v-menu :close-on-content-click="false">
@@ -66,6 +45,24 @@
                 </v-menu>
             </template>
         </v-app-bar>
+        <v-navigation-drawer location="start" permanent>
+            <template #append>
+                <v-footer>
+                    <small>&copy; {{ year }} <em>Your name here</em></small>
+                </v-footer>
+            </template>
+            <v-list>
+                <v-list-item
+                    v-for="route in routes"
+                    :key="route.name"
+                    color="primary"
+                    :prepend-icon="route.meta.menuItem?.icon"
+                    :to="route"
+                    :value="route.name"
+                    >{{ route.meta.menuItem?.title }}
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
         <v-main class="d-flex flex-column flex-1-1-100">
             <router-view v-slot="{ Component, route }" name="main">
                 <component :is="Component" :key="route.name" />
@@ -79,7 +76,7 @@ import { computed, provide } from "vue";
 import { RouterView } from "vue-router";
 
 import logo from "./logo.png";
-import NotificationSnackbar from "./notifications/NotificationSnackbar.vue";
+import UserNotification from "./notifications/UserNotification.vue";
 import { byIndex, hasMenuItem } from "./routes";
 import type { Services } from "./services.ts";
 import { defineStores, StoresKey } from "./stores.ts";
@@ -98,14 +95,14 @@ const { getRoutes } = router;
 const { selectedTheme, theme } = themeStore;
 const year = new Date().getFullYear();
 const routes = getRoutes()
-    .filter((route) => hasMenuItem(route))
+    .filter(route => hasMenuItem(route))
     .sort(byIndex);
 const name = computed<string>(() => "User Name");
 function showSettings() {
-    stores.notificationsStore.notifyWarning("Settings not available");
+    stores.notificationsStore.notifyWarning("Settings not yet implemented");
 }
 function signOut() {
-    stores.notificationsStore.notifyWarning("Sign out not available");
+    stores.notificationsStore.notifyWarning("Sign out not yet implemented");
 }
 </script>
 
