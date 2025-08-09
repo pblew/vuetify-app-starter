@@ -13,29 +13,25 @@
     >
         <div class="d-flex flex-row">
             <v-icon size="48" class="flex-0-0 my-auto mr-4" :icon="icon" />
-            <div class="flex-1-1 my-auto text-body-1">{{ currentNotification?.message }}</div>
+            <div class="flex-1-1 my-auto text-body-1 font-weight-bold">
+                {{ currentNotification?.message }}
+            </div>
         </div>
     </v-snackbar>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref, unref, watchEffect } from "vue";
+import { computed, nextTick, ref, unref, watch } from "vue";
 import { injectStore } from "@/stores.ts";
-import { NotificationType } from "@/notifications/NotificationsStore";
 
-const colours: ReadonlyMap<NotificationType, string> = new Map([
-    [NotificationType.INFO, "info"],
-    [NotificationType.SUCCESS, "success"],
-    [NotificationType.WARNING, "warning"],
-    [NotificationType.ERROR, "error"],
-]);
+const colours = ["info", "success", "warning", "error"];
 
-const icons: ReadonlyMap<NotificationType, string> = new Map([
-    [NotificationType.INFO, "mdi-information-variant-circle"],
-    [NotificationType.SUCCESS, "mdi-check-circle"],
-    [NotificationType.WARNING, "mdi-alert-circle"],
-    [NotificationType.ERROR, "mdi-close-circle"],
-]);
+const icons = [
+    "mdi-information-variant-circle",
+    "mdi-check-circle",
+    "mdi-alert-circle",
+    "mdi-close-circle",
+];
 
 defineProps<{
     theme: string;
@@ -45,19 +41,16 @@ const { notificationsStore } = injectStore();
 const { currentNotification, dismissCurrentNotification } = notificationsStore;
 
 const show = ref(false);
-watchEffect(() => (show.value = unref(currentNotification) !== undefined));
-watchEffect(() => {
-    if (unref(show) === false) {
+watch(currentNotification, value => {
+    show.value = value !== undefined;
+});
+watch(show, value => {
+    if (value === false) {
         nextTick().then(() => dismissCurrentNotification());
     }
 });
-const colour = computed<string | undefined>(existingColour => {
-    const type = unref(currentNotification)?.type;
-    return type !== undefined && colours.has(type) ? colours.get(type) : existingColour;
-});
-const icon = computed<string | undefined>(existingIcon => {
-    const type = unref(currentNotification)?.type;
-    return type !== undefined && icons.has(type) ? icons.get(type) : existingIcon;
-});
-const timerColour = computed<string | undefined>(() => `on-${unref(colour)}`);
+const typeIndex = computed<number>(oldValue => unref(currentNotification)?.type ?? oldValue ?? 0);
+const colour = computed<string | undefined>(oldValue => colours[unref(typeIndex)] ?? oldValue);
+const icon = computed<string | undefined>(oldValue => icons[unref(typeIndex)] ?? oldValue);
+const timerColour = computed(() => `on-${unref(colour)}`);
 </script>
