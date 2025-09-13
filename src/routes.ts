@@ -10,6 +10,7 @@ interface RouteMenuItem {
     index: number;
     icon: string;
     title: string;
+    color?: string;
     description?: string;
 }
 
@@ -72,6 +73,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                 index: 1,
                 icon: "mdi-alpha-a-circle-outline",
                 title: "Alpha",
+                color: "success",
                 description: "Alpha",
             },
         },
@@ -85,6 +87,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                 index: 2,
                 icon: "mdi-alpha-b-circle-outline",
                 title: "Beta",
+                color: "warning",
                 description: "Beta",
             },
         },

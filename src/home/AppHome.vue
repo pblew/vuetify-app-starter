@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-container my-4">
+    <div class="grid-container my-4 mx-2">
         <v-card
             v-for="route in routes"
             :key="route.name"
@@ -7,7 +7,11 @@
             width="400"
             :to="route.path"
         >
-            <v-icon color="primary" size="128" :icon="route.meta.menuItem?.icon" />
+            <v-icon
+                :color="route.meta.menuItem?.color ?? 'primary'"
+                :icon="route.meta.menuItem?.icon"
+                size="128"
+            />
             <div class="align-start">
                 <v-card-title>{{ route.meta.menuItem?.title }}</v-card-title>
                 <v-card-text>{{ route.meta.menuItem?.description }}</v-card-text>
