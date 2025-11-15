@@ -6,19 +6,19 @@ import useRouterStore, { type RouterStore } from "./routing/RouterStore";
 import useThemeStore, { type ThemeStore } from "./theme/ThemeStore";
 
 export interface Stores {
-    notificationsStore: NotificationsStore;
-    themeStore: ThemeStore;
-    router: RouterStore;
+  notificationsStore: NotificationsStore;
+  themeStore: ThemeStore;
+  router: RouterStore;
 }
 
 export function defineStores(services: Services): Readonly<Stores> {
-    const stores = {} as Stores;
+  const stores = {} as Stores;
 
-    stores.notificationsStore = useNotificationsStore(services, stores);
-    stores.themeStore = useThemeStore(services, stores);
-    stores.router = useRouterStore(services, stores);
+  stores.notificationsStore = useNotificationsStore(services, stores);
+  stores.themeStore = useThemeStore(services, stores);
+  stores.router = useRouterStore(services, stores);
 
-    return stores;
+  return stores;
 }
 
 export const StoresKey = Symbol("Stores") as InjectionKey<Stores>;

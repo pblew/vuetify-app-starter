@@ -9,7 +9,7 @@ const config = {
     endOfLine: "lf",
     semi: true,
     singleQuote: false,
-    tabWidth: 4,
+    tabWidth: 2,
     trailingComma: "all",
     useTabs: false,
     vueIndentScriptAndStyle: false,
