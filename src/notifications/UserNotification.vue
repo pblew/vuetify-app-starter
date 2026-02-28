@@ -9,7 +9,8 @@
     width="500"
     :color="colour"
     :theme="theme"
-    :timer="timerColour"
+    timer="top"
+    :timer-color="timerColour"
   >
     <div class="d-flex flex-row">
       <v-icon size="48" class="flex-0-0 my-auto mr-4" :icon="icon" />

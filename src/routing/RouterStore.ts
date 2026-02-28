@@ -14,13 +14,9 @@ export default function useRouterStore(services: Services, store: Stores): Route
   const { vueRouter } = services;
   const guards = useRouteGuards(store);
 
-  vueRouter.beforeEach(async (to, from, next) => {
+  vueRouter.beforeEach(async (to, from) => {
     const guard = guards.get(to);
-    if (guard) {
-      await guard(to, from, next);
-    } else {
-      next();
-    }
+    return guard ? guard(to, from) : true;
   });
 
   async function reloadRoute(delay = 100) {
