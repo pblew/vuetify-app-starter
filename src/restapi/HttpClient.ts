@@ -62,7 +62,7 @@ export function useHttpClient(baseUrl: string, options?: Partial<HttpClientOptio
   const { fetchJwt, headers } = defaults;
 
   function resolveUrl(url: string): string {
-    return `${baseUrl}/${url}`;
+    return url ? `${baseUrl}/${url}` : baseUrl;
   }
 
   function getHeaders(jwt?: string): Headers {
