@@ -1,31 +1,3 @@
-function onResponseData<T>(
-  resolve: (value: PromiseLike<T> | T) => void,
-  reject: (reason?: unknown) => void,
-  response: Response,
-  data: T | Error,
-) {
-  if (response.ok) {
-    resolve(data as T);
-  } else {
-    reject({
-      code: response.status,
-      name: response.statusText ?? `http-${response.status}`,
-      message: (data as Error)?.message ?? data,
-    });
-  }
-}
-
-function onResponse<T>(
-  resolve: (value: PromiseLike<T> | T) => void,
-  reject: (reason?: unknown) => void,
-  response: Response,
-) {
-  return response.json().then(
-    data => onResponseData(resolve, reject, response, data),
-    parseError => reject(parseError),
-  );
-}
-
 export interface HttpClient {
   httpGet<T>(url: string): Promise<T>;
   httpPost<T, U>(url: string, data: U): Promise<T>;
@@ -40,8 +12,18 @@ const enum HttpMethod {
   DELETE = "DELETE",
 }
 
+export type RequestDataPreprocessor = (rawRequestData?: unknown) => string | undefined;
+
+export const jsonify: RequestDataPreprocessor = rawRequestData => JSON.stringify(rawRequestData);
+export const passthru: RequestDataPreprocessor = rawRequestData =>
+  rawRequestData !== undefined ? (rawRequestData as string) : undefined;
+
+export type ResponseDataType = "arrayBuffer" | "blob" | "json" | "text";
+
 export interface HttpClientOptions extends RequestInit {
   fetchJwt: () => Promise<string | undefined>;
+  requestDataPreprocess: RequestDataPreprocessor;
+  responseDataType: ResponseDataType;
 }
 
 const defaultHttpClientOptions: HttpClientOptions = {
@@ -52,6 +34,8 @@ const defaultHttpClientOptions: HttpClientOptions = {
   },
   mode: "same-origin",
   fetchJwt: async () => undefined,
+  requestDataPreprocess: jsonify,
+  responseDataType: "json",
 };
 
 export function useHttpClient(baseUrl: string, options?: Partial<HttpClientOptions>): HttpClient {
@@ -73,21 +57,25 @@ export function useHttpClient(baseUrl: string, options?: Partial<HttpClientOptio
     return requestHeaders;
   }
 
-  async function request<T, U>(method: HttpMethod, url: string, data?: U): Promise<T> {
+  async function request<T, U>(method: HttpMethod, url: string, requestData?: U): Promise<T> {
     const jwt = await fetchJwt();
     const headers = getHeaders(jwt);
-    const body = JSON.stringify(data);
-    return new Promise<T>((resolve, reject) => {
-      fetch(resolveUrl(url), {
-        ...defaults,
-        method,
-        headers,
-        body,
-      }).then(
-        response => onResponse(resolve, reject, response),
-        reason => reject(reason),
-      );
+    const body = defaults.requestDataPreprocess(requestData);
+    const response = await fetch(resolveUrl(url), {
+      ...defaults,
+      method,
+      headers,
+      body,
     });
+    const responseData: T = await response[defaults.responseDataType]();
+    if (!response.ok) {
+      throw {
+        code: response.status,
+        name: response.statusText ?? `http-${response.status}`,
+        message: (responseData as Error)?.message ?? responseData,
+      };
+    }
+    return responseData;
   }
 
   return {
