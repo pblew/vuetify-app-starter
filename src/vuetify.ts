@@ -4,6 +4,10 @@ import { Theme } from "./theme/ThemeStore.ts";
 
 const vuetify = createVuetify({
   defaults: {
+    VBtn: {
+      class: "text-uppercase",
+      style: "letter-spacing: 0.105em;",
+    },
     VTextField: {
       persistentPlaceholder: true,
     },
