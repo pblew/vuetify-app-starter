@@ -43,7 +43,7 @@ export function useHttpClient(baseUrl: string, options?: Partial<HttpClientOptio
     ...defaultHttpClientOptions,
     ...(options ?? {}),
   };
-  const { fetchJwt, headers } = defaults;
+  const { fetchJwt, headers, requestDataPreprocess, responseDataType } = defaults;
 
   function resolveUrl(url: string): string {
     return url ? `${baseUrl}/${url}` : baseUrl;
@@ -60,14 +60,14 @@ export function useHttpClient(baseUrl: string, options?: Partial<HttpClientOptio
   async function request<T, U>(method: HttpMethod, url: string, requestData?: U): Promise<T> {
     const jwt = await fetchJwt();
     const headers = getHeaders(jwt);
-    const body = defaults.requestDataPreprocess(requestData);
+    const body = requestDataPreprocess(requestData);
     const response = await fetch(resolveUrl(url), {
       ...defaults,
       method,
       headers,
       body,
     });
-    const responseData: T = await response[defaults.responseDataType]();
+    const responseData: T = await response[responseDataType]();
     if (!response.ok) {
       throw {
         code: response.status,
