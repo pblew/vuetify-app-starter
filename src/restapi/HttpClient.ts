@@ -12,11 +12,11 @@ const enum HttpMethod {
   DELETE = "DELETE",
 }
 
-export type RequestDataPreprocessor = (rawRequestData?: unknown) => string | undefined;
+export type RequestDataPreprocessor = (rawRequestData?: unknown) => RequestInit["body"];
 
 export const jsonify: RequestDataPreprocessor = rawRequestData => JSON.stringify(rawRequestData);
 export const passthru: RequestDataPreprocessor = rawRequestData =>
-  rawRequestData !== undefined ? (rawRequestData as string) : undefined;
+  rawRequestData as RequestInit["body"];
 
 export type ResponseDataType = "arrayBuffer" | "blob" | "json" | "text";
 
