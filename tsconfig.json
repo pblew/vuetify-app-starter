@@ -1,16 +1,14 @@
 {
   "extends": ["@tsconfig/node24/tsconfig.json", "@vue/tsconfig/tsconfig.dom.json"],
   "compilerOptions": {
-    "baseUrl": ".",
     "declaration": false,
-    "downlevelIteration": false,
     "experimentalDecorators": true,
     "importHelpers": true,
     "incremental": true,
     "isolatedModules": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "sourceMap": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
