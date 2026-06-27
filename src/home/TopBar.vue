@@ -1,7 +1,9 @@
 <template>
   <v-app-bar color="primary">
     <template #title>
-      <v-app-bar-title class="text-h5"><em>Application Name</em></v-app-bar-title>
+      <v-app-bar-title class="text-headline-medium">
+        <em>Application Name</em>
+      </v-app-bar-title>
     </template>
     <template #image>
       <v-img :src="logo" alt="" />

@@ -1,9 +1,12 @@
 import pluginVue from "eslint-plugin-vue";
+import pluginVuetify from "eslint-plugin-vuetify";
 import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
 import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
 
 const config = defineConfigWithVueTs(
     pluginVue.configs["flat/recommended"],
+    pluginVuetify.configs["flat/recommended"],
+    pluginVuetify.configs["flat/recommended-v4"],
     vueTsConfigs.recommended,
     {
         files: ["**/*.{ts,vue}"],

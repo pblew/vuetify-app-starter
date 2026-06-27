@@ -4,7 +4,7 @@
     class="cursor-pointer"
     close-on-content-click
     location="top"
-    multi-line
+    min-height="68"
     position="fixed"
     width="500"
     :color="colour"
@@ -14,7 +14,7 @@
   >
     <div class="d-flex flex-row">
       <v-icon size="48" class="flex-0-0 my-auto mr-4" :icon="icon" />
-      <div class="flex-1-1 my-auto text-body-1 font-weight-bold">
+      <div class="flex-1-1 my-auto text-body-large font-weight-bold">
         {{ currentNotification?.message }}
       </div>
     </div>

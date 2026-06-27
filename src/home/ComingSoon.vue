@@ -7,7 +7,7 @@
     width="300"
   >
     <div>
-      <v-card-title class="text-h5">{{ message }}</v-card-title>
+      <v-card-title class="text-headline-medium">{{ message }}</v-card-title>
       <v-card-actions>
         <slot name="navigation">
           <v-btn prepend-icon="mdi-home-outline" text="Return home" :to="{ name: 'Home' }" />
