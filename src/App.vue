@@ -11,7 +11,9 @@
     <side-bar :routes="routes" :current-route="currentRoute" />
     <v-main class="d-flex flex-column flex-1-1-100">
       <router-view v-slot="{ Component, route }" name="main">
-        <component :is="Component" :key="route.name" />
+        <v-fade-transition hide-on-leave>
+          <component :is="Component" :key="route.name" />
+        </v-fade-transition>
       </router-view>
     </v-main>
   </v-app>
