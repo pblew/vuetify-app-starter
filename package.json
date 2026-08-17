@@ -53,5 +53,11 @@
     "vite-plugin-vuetify": "~2.1.0",
     "vitest": "~4.1.0",
     "vue-tsc": "~3.3.0"
+  },
+  "overrides": {
+    "glob": "~13.0.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true
   }
 }
