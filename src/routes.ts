@@ -42,7 +42,7 @@ export function byIndex(
   return Math.sign((index1 ?? 0) - (index2 ?? 0));
 }
 
-const routes: Readonly<RouteRecordRaw[]> = [
+export const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: "/",
     redirect: { name: "Home" },
@@ -93,5 +93,3 @@ const routes: Readonly<RouteRecordRaw[]> = [
     },
   },
 ];
-
-export default routes;

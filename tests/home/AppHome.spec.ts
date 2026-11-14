@@ -6,8 +6,8 @@ import { mount, type ComponentMountingOptions, VueWrapper } from "@vue/test-util
 import AppHome from "@/home/AppHome.vue";
 import { defineStores, StoresKey } from "@/stores.ts";
 
-import { defaultMockRouter, mockServices } from "../mocks";
-import vuetify from "../vuetify";
+import { defaultMockRouter, mockServices } from "@tests/mocks";
+import { vuetify } from "@tests/vuetify";
 
 describe("AppHome", () => {
   type Instance = ComponentInstance<typeof AppHome>;
@@ -95,6 +95,6 @@ describe("AppHome", () => {
   it("only displays routes with menu items and descriptions", async () => {
     const wrapper = await mountFunction();
     const displayedRoutes = wrapper.findAllComponents(VCard);
-    expect(displayedRoutes).toHaveLength(3);
+    expect(displayedRoutes).to.have.length(3);
   });
 });

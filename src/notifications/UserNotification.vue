@@ -46,7 +46,7 @@ watch(currentNotification, value => {
   show.value = value !== undefined;
 });
 watch(show, value => {
-  if (value === false) {
+  if (!value) {
     nextTick().then(() => dismissCurrentNotification());
   }
 });

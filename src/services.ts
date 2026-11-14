@@ -1,17 +1,16 @@
 import type { Router } from "vue-router";
-import useUserPreferencesService, {
+import {
   type UserPreferencesService,
+  useUserPreferencesService,
 } from "./user/UserPreferencesService";
-import vueRouter from "./vueRouter";
+import { vueRouter } from "./vueRouter";
 
 export interface Services {
   userPreferencesService: UserPreferencesService;
   vueRouter: Router;
 }
 
-const services: Services = {
+export const services: Services = {
   userPreferencesService: useUserPreferencesService(),
   vueRouter,
 };
-
-export default services;

@@ -4,7 +4,7 @@ export type FunctionInterceptor = (
   ...args: unknown[]
 ) => void;
 
-export default function intercept<T extends object>(
+export function intercept<T extends object>(
   target: T,
   functionInterceptor: FunctionInterceptor,
 ): T {

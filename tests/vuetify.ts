@@ -1,3 +1,3 @@
 import { createVuetify } from "vuetify";
 
-export default createVuetify();
+export const vuetify = createVuetify();

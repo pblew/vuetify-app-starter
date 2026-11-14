@@ -2,7 +2,7 @@ import { createVuetify } from "vuetify";
 import { dark, light } from "./themes.ts";
 import { Theme } from "./theme/ThemeStore.ts";
 
-const vuetify = createVuetify({
+export const vuetify = createVuetify({
   defaults: {
     VBtn: {
       class: "text-uppercase",
@@ -20,5 +20,3 @@ const vuetify = createVuetify({
     themes: { light, dark },
   },
 });
-
-export default vuetify;

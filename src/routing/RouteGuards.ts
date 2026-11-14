@@ -27,12 +27,10 @@ export default function useRouteGuards(_store: Stores): RouteGuards {
     //   ["guardName", guardFunction],
   ]);
 
-  function get(route: RouteLocationNormalized): RouteGuard | undefined {
-    const { guardName } = route.meta;
-    return guardName !== undefined ? guards.get(guardName) : undefined;
-  }
-
   return {
-    get,
+    get(route: RouteLocationNormalized): RouteGuard | undefined {
+      const { guardName } = route.meta;
+      return guardName !== undefined ? guards.get(guardName) : undefined;
+    },
   };
 }

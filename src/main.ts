@@ -5,9 +5,9 @@ import "vuetify/styles";
 import { createApp } from "vue";
 
 import App from "./App.vue";
-import services from "./services.ts";
-import vueRouter from "./vueRouter";
-import vuetify from "./vuetify";
+import { services } from "./services.ts";
+import { vueRouter } from "./vueRouter";
+import { vuetify } from "./vuetify";
 
 const app = createApp(App, { services });
 app.use(vueRouter);

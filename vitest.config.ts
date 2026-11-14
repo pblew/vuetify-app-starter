@@ -1,10 +1,15 @@
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, URL } from "node:url";
 import { mergeConfig, defineConfig, configDefaults } from "vitest/config";
-import viteConfig from "./vite.config";
+import viteConfig from "./vite.config.ts";
 
 export default mergeConfig(
   viteConfig,
   defineConfig({
+    resolve: {
+      alias: {
+        "@tests": fileURLToPath(new URL("./tests", import.meta.url)),
+      },
+    },
     test: {
       globals: true,
       // globalSetup: ["./tests/globalSetup.ts"],
@@ -20,7 +25,9 @@ export default mergeConfig(
       coverage: {
         cleanOnRerun: true,
         exclude: ["*.config.js", "*.config.ts", "src/vueRouter.ts", "src/vuetify.ts", "tests/**"],
+        include: ["**/*.ts", "**/*.vue"],
         reporter: ["lcovonly", "text"],
+        reportOnFailure: true,
       },
       reporters: ["junit", "verbose"],
       outputFile: {

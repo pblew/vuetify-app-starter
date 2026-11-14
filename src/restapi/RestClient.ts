@@ -23,14 +23,20 @@ export function useRestClient<T extends Identifiable>(
   const { httpGet, httpPost, httpPut, httpDelete } = useHttpClient(baseUrl, options);
 
   return {
-    findItems: (endpointFormatter = defaultNoIdEndpointFormatter) => httpGet(endpointFormatter()),
-    createItem: (itemOrArgs, endpointFormatter = defaultNoIdEndpointFormatter) =>
-      httpPost(endpointFormatter(itemOrArgs), itemOrArgs),
-    readItem: (id, endpointFormatter = defaultIdEndpointFormatter) =>
-      httpGet(endpointFormatter(id)),
-    updateItem: (item, endpointFormatter = defaultItemEndpointFormatter) =>
-      httpPut(endpointFormatter(item), item),
-    deleteItem: (id, endpointFormatter = defaultIdEndpointFormatter) =>
-      httpDelete(endpointFormatter(id)),
+    findItems(endpointFormatter = defaultNoIdEndpointFormatter) {
+      return httpGet(endpointFormatter());
+    },
+    createItem(itemOrArgs, endpointFormatter = defaultNoIdEndpointFormatter) {
+      return httpPost(endpointFormatter(itemOrArgs), itemOrArgs);
+    },
+    readItem(id, endpointFormatter = defaultIdEndpointFormatter) {
+      return httpGet(endpointFormatter(id));
+    },
+    updateItem(item, endpointFormatter = defaultItemEndpointFormatter) {
+      return httpPut(endpointFormatter(item), item);
+    },
+    deleteItem(id, endpointFormatter = defaultIdEndpointFormatter) {
+      return httpDelete(endpointFormatter(id));
+    },
   };
 }

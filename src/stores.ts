@@ -1,9 +1,9 @@
 import { inject, type InjectionKey } from "vue";
 
 import type { Services } from "./services.ts";
-import useNotificationsStore, { type NotificationsStore } from "./notifications/NotificationsStore";
-import useRouterStore, { type RouterStore } from "./routing/RouterStore";
-import useThemeStore, { type ThemeStore } from "./theme/ThemeStore";
+import { type NotificationsStore, useNotificationsStore } from "./notifications/NotificationsStore";
+import { type RouterStore, useRouterStore } from "./routing/RouterStore";
+import { type ThemeStore, useThemeStore } from "./theme/ThemeStore";
 
 export interface Stores {
   notificationsStore: NotificationsStore;

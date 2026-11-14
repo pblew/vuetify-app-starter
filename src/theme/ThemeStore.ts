@@ -24,16 +24,12 @@ export interface ThemeStore extends Readonly<ToRefs<State>> {
   readonly theme: Ref<Theme>;
 }
 
-export default function useThemeStore(services: Services, _store: Stores): ThemeStore {
+export function useThemeStore(services: Services, _store: Stores): ThemeStore {
   const { userPreferencesService } = services;
 
   const state = reactive<State>({
     selectedTheme: userPreferencesService.getItem(userPreferenceThemeKey, () => Theme.SYSTEM),
   });
-
-  const theme = computed(() =>
-    state.selectedTheme === Theme.SYSTEM ? unref(systemTheme) : state.selectedTheme,
-  );
 
   watchEffect(() => {
     if (state.selectedTheme === Theme.SYSTEM) {
@@ -45,6 +41,8 @@ export default function useThemeStore(services: Services, _store: Stores): Theme
 
   return {
     ...toRefs(state),
-    theme,
+    theme: computed(() =>
+      state.selectedTheme === Theme.SYSTEM ? unref(systemTheme) : state.selectedTheme,
+    ),
   };
 }
